@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | D&D Project</title>
+    
+    <!-- Referência ao ficheiro de estilo CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Referência ao ficheiro JavaScript (com type="module" para usar import) -->
+    <script type="module" src="script.js" defer></script>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Formulário de Login (visível por padrão) -->
+        <div id="login-view">
+            <h1>Login</h1>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Senha</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit">Entrar</button>
+            </form>
+            <div class="toggle-form">
+                <p>Não tem uma conta? <button id="show-signup">Registe-se</button></p>
+            </div>
+        </div>
+
+        <!-- Formulário de Registo (escondido por padrão) -->
+        <div id="signup-view" style="display: none;">
+            <h1>Registo</h1>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Senha</label>
+                    <input type="password" id="signup-password" minlength="6" required>
+                </div>
+                <button type="submit">Criar Conta</button>
+            </form>
+            <div class="toggle-form">
+                <p>Já tem uma conta? <button id="show-login">Faça Login</button></p>
+            </div>
+        </div>
+        
+        <div id="message-box" class="mensagem"></div>
+    </div>
+
+</body>
+</html>
