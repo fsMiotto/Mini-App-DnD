@@ -99,6 +99,124 @@ body {
     margin-right: auto; /* Empurra o nome da perícia para a direita */
 }
 
+/*estilos para magia*/
+.magias-view {
+    display: flex;
+    flex-direction: column;
+    gap: 24px; /* Espaço entre os blocos de nível */
+}
+
+/* Bloco para cada nível de magia */
+.spell-level {
+    background-color: #fdf5e6; /* Cor de pergaminho claro */
+    border: 1px solid #d3c0a5;
+    border-radius: 5px;
+    padding: 15px 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Título do nível (ex: "Nível 1") */
+.spell-level h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e4d8c7;
+    font-family: 'Libre Baskerville', serif; /* Fonte temática */
+    color: #5c3d2e;
+}
+
+/* Rastreador de espaços de magia */
+.spell-slot-tracker {
+    font-size: 0.9em;
+    font-weight: normal;
+    font-family: sans-serif; /* Fonte normal para os números */
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.spell-slot-tracker input[type="number"] {
+    width: 45px; /* Largura menor para os inputs */
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 4px;
+    font-size: 1em;
+    background-color: #fff;
+}
+
+/* Remove as setas do input de número (opcional, para um look mais limpo) */
+.spell-slot-tracker input[type="number"]::-webkit-inner-spin-button, 
+.spell-slot-tracker input[type="number"]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+.spell-slot-tracker input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Lista de magias */
+.spell-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Item individual da lista de magias */
+.spell-list li {
+    padding: 10px 5px;
+    border-bottom: 1px solid #eee5d8;
+    transition: background-color 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+}
+
+.spell-list li:not(.add-spell-placeholder):hover {
+    background-color: #f9efe0; /* Leve destaque ao passar o mouse */
+}
+
+/* Último item não precisa de borda */
+.spell-list li:last-child {
+    border-bottom: none;
+}
+
+/* Estilos para o placeholder de adicionar magia */
+.add-spell-placeholder {
+    gap: 8px;
+    color: #888;
+    cursor: pointer;
+}
+
+.add-spell-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px dashed #aaa;
+    background-color: transparent;
+    color: #888;
+    font-size: 16px;
+    line-height: 22px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-spell-placeholder:hover .add-spell-btn {
+    background-color: #e85a4f;
+    color: white;
+    border-style: solid;
+}
+
+.add-spell-placeholder:hover span {
+    color: #e85a4f;
+}
+
 
 /* Estilização da pagina tesouros */
 .tesouros-grid {

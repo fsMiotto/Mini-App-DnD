@@ -24,9 +24,9 @@ const initialCharacterState = {
         { id: 2, title: 'NPCs Importantes', content: 'Não confiar no K\'Varn, o anão da taverna.' },
     ],
     spell_slots: {
-        1: { total: 4, used: 2 },
-        2: { total: 3, used: 1 },
-        3: { total: 2, used: 0 },
+        1: { total: 4, atuais: 2 }, // Mantendo sua nova estrutura
+        2: { total: 3, atuais: 1 },
+        3: { total: 2, atuais: 0 },
     },
     spells: [
         { level: 1, name: 'Marca do Caçador' },
@@ -133,28 +133,47 @@ function NotasView({ notes }) {
     );
 }
 
-function MagiasView({ spells, spellSlots }) {
+function MagiasView({ spells, spellSlots, setCharacter }) {
     const spellsByLevel = spells.reduce((acc, spell) => {
         acc[spell.level] = acc[spell.level] || [];
         acc[spell.level].push(spell);
         return acc;
     }, {});
+
+    // Handler para atualizar os slots de magia no estado principal
+    const handleSlotChange = (level, field, value) => {
+        const numericValue = parseInt(value, 10);
+        if (value !== '' && isNaN(numericValue)) return; // Ignora se não for número
+
+        setCharacter(prev => ({
+            ...prev,
+            spell_slots: {
+                ...prev.spell_slots,
+                [level]: { ...prev.spell_slots[level], [field]: value === '' ? null : numericValue }
+            }
+        }));
+    };
+
     return (
         <div className="magias-view">
             <h1 className="page-title">Livro de Magias</h1>
-            {/* O Object.entries garante que iteramos sobre todos os níveis definidos em spell_slots */}
             {Object.entries(spellSlots).map(([level, slots]) => (
                 <div className="spell-level" key={level}>
                     <h2>
                         <span>Nível {level}</span>
                         <span className="spell-slot-tracker">
-                            Espaços: <input type="number" defaultValue={slots.total - slots.used} /> / {slots.total}
+                            Espaços: <input type="number" value={slots.atuais ?? ''} onChange={(e) => handleSlotChange(level, 'atuais', e.target.value)} placeholder="0" /> / <input type="number" value={slots.total ?? ''} onChange={(e) => handleSlotChange(level, 'total', e.target.value)} placeholder="0" />
                         </span>
                     </h2>
                     <ul className="spell-list">
                        {(spellsByLevel[level] || []).map(spell => (
                             <li key={spell.name}>{spell.name}</li>
                         ))}
+                        {/* Placeholder para adicionar nova magia */}
+                        <li className="add-spell-placeholder">
+                            <button className="add-spell-btn">+</button>
+                            <span>Adicionar magia...</span>
+                        </li>
                     </ul>
                 </div>
             ))}
@@ -201,7 +220,7 @@ function CharacterSheet({ character, setCharacter }) {
             case 'notas': 
                 return <NotasView notes={character.notes} />;
             case 'magias': 
-                return <MagiasView spells={character.spells} spellSlots={character.spell_slots} />;
+                return <MagiasView spells={character.spells} spellSlots={character.spell_slots} setCharacter={setCharacter} />;
             case 'tesouros': 
                 return <TesourosView inventory={character.inventory} setCharacter={setCharacter} />;
             default: 
