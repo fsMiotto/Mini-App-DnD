@@ -13,7 +13,7 @@ function calculateModifier(score) {
 // --- ESTADO INICIAL DA FICHA (COM DADOS PARA AS NOVAS ABAS) ---
 const initialCharacterState = {
     info: { name: 'Grog Strongjaw', class: 'Bárbaro', level: 5, hp_current: null, hp_max: null, ac: null, initiative: null, speed: null, proficiency_bonus: null, inspiration: false, },
-    attributes: { forca: 10, destreza: 10, constituicao: 10, inteligencia: 10, sabedoria: 10, carisma: 10, },
+    attributes: { forca: 10, destreza: 10, inteligencia: 10, sabedoria: 10, constituicao: 10, carisma: 10, },
     proficiencies: { /* ... */ },
     skill_values: { /* ... */ },
     attacks: [ { name: 'Espada Longa', bonus: '+5', damage: '1d8+5 Cortante' } ],
@@ -34,7 +34,10 @@ const initialCharacterState = {
         { level: 2, name: 'Passo Nebuloso' },
         { level: 3, name: 'Velocidade' },
     ],
-    treasures: '50 peças de ouro\n1x Poção de Cura\n1x Gema misteriosa'
+    inventory: {
+        equipment: 'Espada Longa\nEscudo de Aço\nMochila com suprimentos',
+        treasures: '50 peças de ouro\n1x Poção de Cura\n1x Gema misteriosa'
+    }
 };
 
 
@@ -93,7 +96,7 @@ function PrincipalView({ character, setCharacter }) {
                             </div>
                         </div>
                     </div>
-                    <div className="abilities-box">
+                    <div className="paper-container">
                          <h3>Habilidades & Ataques</h3>
                         <table className="attacks-table">
                             <thead><tr><th>Ataque</th><th>Bônus</th><th>Dano/Tipo</th></tr></thead>
@@ -103,7 +106,7 @@ function PrincipalView({ character, setCharacter }) {
                                 ))}
                             </tbody>
                         </table>
-                        <textarea className="class-abilities-textarea" placeholder="Descreva aqui as habilidades da sua classe..." value={character.class_abilities} onChange={(e) => setCharacter(prev => ({...prev, class_abilities: e.target.value}))} />
+                        <textarea className="paper-textarea" placeholder="Descreva aqui as habilidades da sua classe..." value={character.class_abilities} onChange={(e) => setCharacter(prev => ({...prev, class_abilities: e.target.value}))} />
                     </div>
                 </div>
                 <div className="attributes-column">
@@ -159,16 +162,27 @@ function MagiasView({ spells, spellSlots }) {
     );
 }
 
-function TesourosView({ treasures, setCharacter }) {
+function TesourosView({ inventory, setCharacter }) {
     return (
         <div className="tesouros-view">
             <h1 className="page-title">Tesouros e Inventário</h1>
-            <textarea 
-                className="tesouros-textarea"
-                placeholder="Liste aqui as suas moedas, gemas e outros tesouros..."
-                value={treasures}
-                onChange={(e) => setCharacter(prev => ({...prev, treasures: e.target.value}))}
-            />
+            {/* Aplicamos as duas classes aqui: o estilo do contêiner e o layout de grid */}
+            <div className="paper-container tesouros-grid">
+                {/* Primeiro textarea (coluna 1) */}
+                <textarea 
+                    className="paper-textarea"
+                    placeholder="Liste aqui seu equipamento..."
+                    value={inventory.equipment}
+                    onChange={(e) => setCharacter(prev => ({...prev, inventory: {...prev.inventory, equipment: e.target.value}}))}
+                />
+                {/* Segundo textarea (coluna 2) */}
+                <textarea 
+                    className="paper-textarea"
+                    placeholder="Liste aqui suas moedas, gemas e outros tesouros..."
+                    value={inventory.treasures}
+                    onChange={(e) => setCharacter(prev => ({...prev, inventory: {...prev.inventory, treasures: e.target.value}}))}
+                />
+            </div>
         </div>
     );
 }
@@ -189,7 +203,7 @@ function CharacterSheet({ character, setCharacter }) {
             case 'magias': 
                 return <MagiasView spells={character.spells} spellSlots={character.spell_slots} />;
             case 'tesouros': 
-                return <TesourosView treasures={character.treasures} setCharacter={setCharacter} />;
+                return <TesourosView inventory={character.inventory} setCharacter={setCharacter} />;
             default: 
                 return <PrincipalView character={character} setCharacter={setCharacter} />;
         }
