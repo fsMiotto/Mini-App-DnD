@@ -155,9 +155,6 @@ body {
   -webkit-appearance: none; 
   margin: 0; 
 }
-.spell-slot-tracker input[type="number"] {
-  -moz-appearance: textfield;
-}
 
 /* Lista de magias */
 .spell-list {
