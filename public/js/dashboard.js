@@ -47,9 +47,11 @@ function AttributeBox({ name, score, onScoreChange }) {
     const modifier = calculateModifier(score);
     const formattedModifier = modifier >= 0 ? `+${modifier}` : modifier;
     const skillsByAttribute = {
-        forca: ['Atletismo'], destreza: ['Acrobacia', 'Furtividade', 'Prestidigitação'],
+        forca: ['Atletismo'], 
+        destreza: ['Acrobacia', 'Furtividade', 'Prestidigitação'],
         inteligencia: ['Arcanismo', 'História', 'Investigação', 'Natureza', 'Religião'],
         sabedoria: ['Adestrar Animais', 'Intuição', 'Medicina', 'Percepção', 'Sobrevivência'],
+        constituicao: [],
         carisma: ['Atuação', 'Enganação', 'Intimidação', 'Persuasão']
     };
     return (
