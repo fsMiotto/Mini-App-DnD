@@ -99,6 +99,36 @@ body {
     margin-right: auto; /* Empurra o nome da perícia para a direita */
 }
 
+/* estilos para ataques */
+.attacks-table {
+    width: 100%;
+    border-collapse: collapse; /* Garante que as bordas da tabela fiquem limpas */
+    margin-bottom: 8px;
+}
+
+.table-input {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    font-family: inherit; /* Usa a mesma fonte do resto da página */
+    font-size: inherit;
+    padding: 4px 6px;
+    box-sizing: border-box; /* Garante que o padding não quebre o layout */
+}
+
+.table-input:focus {
+    outline: 1px solid #ccc; /* Adiciona um contorno sutil ao focar */
+    background-color: #fff;
+}
+
+/* Ajuste para o botão de remover na tabela */
+.attacks-table .remove-spell-btn {
+    padding: 0;
+    margin: 0 auto;
+    display: block;
+}
+
+/* ---------------------------------------------------*/
 /*estilos para magia*/
 .magias-view {
     display: flex;
@@ -172,6 +202,14 @@ body {
     align-items: center;
 }
 
+.remove-spell-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 0 5px;
+}
+
 .spell-list li:not(.add-spell-placeholder):hover {
     background-color: #f9efe0; /* Leve destaque ao passar o mouse */
 }
@@ -181,39 +219,45 @@ body {
     border-bottom: none;
 }
 
-/* Estilos para o placeholder de adicionar magia */
-.add-spell-placeholder {
+/* Estilos para o placeholder de adicionar item (magia, ataque, etc) */
+.add-item-placeholder {
+    display: flex;
+    align-items: center;
     gap: 8px;
     color: #888;
     cursor: pointer;
+    padding: 10px 5px; /* Padding para dar espaço de clique, igual aos outros 'li' */
+    transition: color 0.2s ease;
 }
 
-.add-spell-btn {
+/* Botão '+' dentro do placeholder */
+.add-item-btn {
     width: 24px;
     height: 24px;
     border-radius: 50%;
     border: 1px dashed #aaa;
     background-color: transparent;
     color: #888;
-    font-size: 16px;
-    line-height: 22px;
+    font-size: 1.2rem;
     cursor: pointer;
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0; /* Impede que o botão encolha */
 }
 
-.add-spell-placeholder:hover .add-spell-btn {
-    background-color: #e85a4f;
+.add-item-placeholder:hover .add-item-btn {
+    background-color: var(--cor-principal);
     color: white;
     border-style: solid;
 }
 
-.add-spell-placeholder:hover span {
-    color: #e85a4f;
+/* Placeholder para ataques, que fica fora de uma lista */
+.attacks-table + .add-item-placeholder {
+    margin: 8px 0 16px 8px;
+    padding-left: 0; /* Remove padding extra para alinhar com a margem */
 }
-
 
 /* Estilização da pagina tesouros */
 .tesouros-grid {
