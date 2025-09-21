@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fichas de Personagem | D&D Project</title>
     <link rel="stylesheet" href="styles/main.css">
+    <script>
+    window.process = { env: { NODE_ENV: 'development' } };
+    </script>
     
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
@@ -13,6 +16,6 @@
 <body>
     <div id="root"></div>
 
-    <script type="text/babel" data-type="module" src="js/dashboard.js"></script>
+    <script type="text/babel" src="js/dashboard.js"></script>
 </body>
 </html>
