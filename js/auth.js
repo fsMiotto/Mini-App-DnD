@@ -58,7 +58,7 @@ loginForm.addEventListener('submit', async (event) => {
         // Após o login bem-sucedido, redirecionamos o utilizador para o dashboard.
         // O setTimeout dá tempo para o utilizador ler a mensagem de sucesso.
         setTimeout(() => {
-            window.location.href = 'dashboard.html';
+            window.location.href = 'characterSelection.html';
         }, 1500); // 1.5 segundos
     }
 });

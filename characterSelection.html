@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Personagens | D&D Project</title>
+    <link rel="stylesheet" href="styles/selection.css">
+</head>
+<body>
+    <div class="selection-page-container">
+        <div class="selection-box">
+            
+            <header class="selection-header">
+                <div id="user-info" class="user-info">
+                    <span class="username">A carregar...</span>
+                    <button id="logout-btn" class="logout-btn">Sair</button>
+                </div>
+                <button id="new-character-btn" class="create-character-btn">
+                    Novo Personagem <span class="icon">+</span>
+                </button>
+            </header>
+
+            <main id="character-list" class="character-list">
+                <p>A carregar personagens...</p>
+            </main>
+
+        </div>
+    </div>
+
+    <div id="create-char-modal" class="modal-backdrop hidden">
+        <div class="modal-content">
+            <h2>Criar Novo Personagem</h2>
+            <p>Escolha um nome para o seu novo herói.</p>
+            <form id="create-char-form">
+                <input type="text" id="new-char-name" placeholder="Nome do Personagem" required />
+                <div class="modal-actions">
+                    <button type="button" id="cancel-create-btn">Cancelar</button>
+                    <button type="submit">Criar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="js/characterSelection.js"></script>
+</body>
+</html>

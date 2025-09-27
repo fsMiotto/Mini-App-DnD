@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=MedievalSharp&display=swap');
+
+:root {
+    --cor-fundo-escuro: #121212;
+    --cor-fundo-medio: #1e1e1e;
+    --cor-superficie: #2a2a2a;
+    --cor-papel: #f3e9d2;
+    --cor-texto-papel: #3a2e24;
+    --cor-texto-claro: #e0e0e0;
+    --cor-principal: #c62828; /* Vermelho escuro */
+    --cor-principal-hover: #a80000;
+    --cor-borda-papel: #c8bda9;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--cor-fundo-escuro);
+    color: var(--cor-texto-claro);
+    margin: 0;
+}
+
+/* Container da página inteira para centralização */
+.selection-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* A "caixa" principal no meio da tela */
+.selection-box {
+    width: 100%;
+    max-width: 1300px; /* Largura da caixa */
+    height: 80vh; /* Altura da caixa */
+    background-color: var(--cor-papel);
+    color: var(--cor-texto-papel);
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    padding: 30px;
+    display: flex;
+    flex-direction: column; /* Organiza os elementos verticalmente */
+}
+
+/* Cabeçalho */
+.selection-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--cor-borda-papel);
+}
+
+.user-info {
+    background-color: #e9dfc7;
+    border: 1px solid var(--cor-borda-papel);
+    border-radius: 20px;
+    padding: 5px 5px 5px 15px;
+    display: flex;
+    align-items: center;
+}
+
+.user-info .username {
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.logout-btn {
+    background-color: var(--cor-principal);
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+.logout-btn:hover { background-color: var(--cor-principal-hover); }
+
+.create-character-btn {
+    background-color: var(--cor-principal);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.2s;
+}
+.create-character-btn:hover { background-color: var(--cor-principal-hover); }
+.create-character-btn .icon {
+    background-color: white;
+    color: var(--cor-principal);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+/* Lista de Personagens */
+.character-list {
+    flex-grow: 1; /* Faz a lista ocupar o espaço restante */
+    overflow-y: auto; /* Adiciona scroll se a lista for longa */
+    padding-top: 20px;
+}
+
+.character-card {
+    background-color: #e9dfc7;
+    border: 1px solid var(--cor-borda-papel);
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.character-card:hover { transform: scale(1.02); border-color: var(--cor-principal); }
+.character-card h2 { margin: 0; font-family: 'MedievalSharp', cursive; font-size: 1.5rem; }
+.character-card p { margin: 0; color: #555; }
+
+
+/* Estilos para o Pop-up (Modal) */
+.modal-backdrop { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+.modal-backdrop.hidden { display: none; }
+.modal-content { background-color: var(--cor-superficie); color: var(--cor-texto-claro); padding: 30px; border-radius: 8px; width: 90%; max-width: 500px; text-align: center; }
+.modal-content h2 { margin-top: 0; }
+.modal-content p { margin-bottom: 20px; color: #ccc; }
+.modal-content input { width: 100%; padding: 12px; font-size: 1.1rem; margin-bottom: 20px; background-color: #333; border: 1px solid #555; color: white; border-radius: 4px; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 15px; }
+.modal-actions button { padding: 10px 20px; border-radius: 5px; border: none; font-weight: bold; cursor: pointer; }
+.modal-actions button[type="button"] { background-color: #555; color: white; }
+.modal-actions button[type="submit"] { background-color: var(--cor-principal); color: white; }
